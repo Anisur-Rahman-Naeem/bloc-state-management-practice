@@ -1,6 +1,20 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:state_management_practice_ostad/app/set_up_dio.dart';
+import 'package:state_management_practice_ostad/core/network_executor/error_mapper/default_error_mapper.dart';
+import 'package:state_management_practice_ostad/core/network_executor/models/request_model.dart';
+import 'package:state_management_practice_ostad/core/network_executor/network_executor.dart';
 import 'package:state_management_practice_ostad/counter_cubit.dart';
+
+Dio dio = getDioInstance();
+NetworkExecutor networkExecutor = NetworkExecutor(
+  errorMapper: DefaultErrorMapper(onAuthorize: () {
+    //if user already is in login page
+    //logout from app
+  }),
+  dio: dio,
+);
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<CounterCubit>(create: (_) => CounterCubit()),
-        BlocProvider<CounterBloc>(create: (_) => CounterBloc())
+        BlocProvider<CounterBloc>(create: (_) => CounterBloc()),
       ],
       child: MaterialApp(home: HomeScreen()),
     );
@@ -42,6 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    networkExecutor.getRequest(RequestModel(path: 'sdfoihodf'));
+
     return Scaffold(
       appBar: AppBar(title: Text("Home")),
       body: Center(
@@ -109,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
         child: BlocBuilder<CounterBloc, int>(
           builder: (context, int count) {
             return Text('$count');
-          }
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -123,7 +139,11 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key, required this.count, required this.updateCount});
+  const SettingsScreen({
+    super.key,
+    required this.count,
+    required this.updateCount,
+  });
 
   final int count;
   final VoidCallback updateCount;
