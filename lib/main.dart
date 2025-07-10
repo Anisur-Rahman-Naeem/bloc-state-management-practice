@@ -1,22 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:state_management_practice_ostad/app/set_up_dio.dart';
-import 'package:state_management_practice_ostad/core/network_executor/error_mapper/default_error_mapper.dart';
-import 'package:state_management_practice_ostad/core/network_executor/models/request_model.dart';
-import 'package:state_management_practice_ostad/core/network_executor/network_executor.dart';
+import 'package:state_management_practice_ostad/app/service_locator.dart';
 import 'package:state_management_practice_ostad/counter_cubit.dart';
 
-Dio dio = getDioInstance();
-NetworkExecutor networkExecutor = NetworkExecutor(
-  errorMapper: DefaultErrorMapper(onAuthorize: () {
-    //if user already is in login page
-    //logout from app
-  }),
-  dio: dio,
-);
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setUpServiceLocator();
   runApp(const MyApp());
 }
 
@@ -56,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    networkExecutor.getRequest(RequestModel(path: 'sdfoihodf'));
 
     return Scaffold(
       appBar: AppBar(title: Text("Home")),
