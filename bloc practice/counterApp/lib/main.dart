@@ -1,11 +1,13 @@
 import 'package:counter_app/bloc/counter_bloc/counter_bloc.dart';
 import 'package:counter_app/bloc/image_picker/image_picker_bloc.dart';
+import 'package:counter_app/bloc/posts/posts_bloc.dart';
 import 'package:counter_app/bloc/switch_example/switch_bloc.dart';
 import 'package:counter_app/bloc/todo/to_do_bloc.dart';
 import 'package:counter_app/repository/favourite_repository.dart';
 import 'package:counter_app/ui/counter/counter_screen.dart';
 import 'package:counter_app/ui/favourite_app/favourite_app_screen.dart';
 import 'package:counter_app/ui/image_picker/image_picker_screen.dart';
+import 'package:counter_app/ui/posts/posts_screen.dart';
 import 'package:counter_app/ui/switch_example/switch_example_screen.dart';
 import 'package:counter_app/ui/to_do_screen/to_do_screen.dart';
 import 'package:counter_app/utils/image_picker_utils.dart';
@@ -41,13 +43,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => FavouriteBloc(FavouriteRepository()),
         ),
+        BlocProvider(
+          create: (_) => PostBloc(),
+        ),
       ],
         child: MaterialApp(
           themeMode: ThemeMode.dark,
           theme: ThemeData(
             brightness: Brightness.dark
           ),
-          home: FavouriteAppScreen(),
+          home: PostsScreen(),
         ),
     );
   }
