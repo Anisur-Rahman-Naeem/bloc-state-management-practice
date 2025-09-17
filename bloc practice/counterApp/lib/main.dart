@@ -28,32 +28,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => SwitchBloc(),
-        ),
-        BlocProvider(
-          create: (_) => CounterBloc(),
-        ),
-        BlocProvider(
-          create: (_) => ImagePickerBloc(ImagePickerUtils()),
-        ),
-        BlocProvider(
-          create: (_) => ToDoBloc(),
-        ),
-        BlocProvider(
-          create: (_) => FavouriteBloc(FavouriteRepository()),
-        ),
-        BlocProvider(
-          create: (_) => PostBloc(),
-        ),
+        BlocProvider(create: (_) => SwitchBloc()),
+        BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
+        BlocProvider(create: (_) => ToDoBloc()),
+        BlocProvider(create: (_) => FavouriteBloc(FavouriteRepository())),
+        BlocProvider(create: (_) => PostBloc()),
       ],
-        child: MaterialApp(
-          themeMode: ThemeMode.dark,
-          theme: ThemeData(
-            brightness: Brightness.dark
-          ),
-          home: PostsScreen(),
-        ),
+      child: MaterialApp(
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(brightness: Brightness.dark),
+        home: CounterScreen(),
+      ),
     );
   }
 }

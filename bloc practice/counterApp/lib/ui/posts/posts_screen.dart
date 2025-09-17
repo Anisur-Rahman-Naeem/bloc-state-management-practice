@@ -1,3 +1,5 @@
+import 'package:counter_app/bloc/counter_bloc/counter_bloc.dart';
+import 'package:counter_app/bloc/counter_bloc/counter_state.dart';
 import 'package:counter_app/bloc/posts/posts_bloc.dart';
 import 'package:counter_app/bloc/posts/posts_events.dart';
 import 'package:counter_app/bloc/posts/posts_states.dart';
@@ -26,6 +28,8 @@ class _PostsScreenState extends State<PostsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Posts APIs'),
+        actions: [
+        ],
       ),
       body: BlocBuilder<PostBloc, PostStates>(
           builder: (context, state){
