@@ -1,5 +1,6 @@
 import 'package:counter_app/bloc/counter_bloc/counter_bloc.dart';
 import 'package:counter_app/bloc/image_picker/image_picker_bloc.dart';
+import 'package:counter_app/ui/login/login_screen.dart';
 import 'package:counter_app/bloc/posts/posts_bloc.dart';
 import 'package:counter_app/bloc/switch_example/switch_bloc.dart';
 import 'package:counter_app/bloc/todo/to_do_bloc.dart';
@@ -35,9 +36,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => PostBloc()),
       ],
       child: MaterialApp(
-        themeMode: ThemeMode.dark,
-        theme: ThemeData(brightness: Brightness.dark),
-        home: CounterScreen(),
+        themeMode: ThemeMode.light,
+        theme: ThemeData(brightness: Brightness.light),
+        home: LoginScreen(),
       ),
     );
   }
