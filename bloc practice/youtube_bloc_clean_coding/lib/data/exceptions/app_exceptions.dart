@@ -13,11 +13,11 @@ class NoInternetException extends AppException {
   NoInternetException([String? message]) : super(message, 'NO INTERNET CONNECTION');
 }
 class UnauthorisedException extends AppException {
-  UnauthorisedException([String? message]) : super(message, 'try again');
+  UnauthorisedException([String? message]) : super(message, '');
 }
 class RequestTimeOutException extends AppException {
-  RequestTimeOutException([String? message]) : super(message, 'try again');
+  RequestTimeOutException([String? message]) : super(message, '');
 }
 class FetchDataException extends AppException {
-  FetchDataException([String? message]) : super(message, 'try again');
+  FetchDataException([String? message]) : super(message, '');
 }
