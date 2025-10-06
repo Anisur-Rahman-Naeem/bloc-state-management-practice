@@ -27,9 +27,9 @@ class EmailInputWidget extends StatelessWidget {
             if (value!.isEmpty) {
               return 'Enter email';
             }
-            if (!Validations.emailValidator(value)) {
-              return 'Email is not correct';
-            }
+            // if (!Validations.emailValidator(value)) {
+            //   return 'Email is not correct';
+            // }
             return null;
           },
           onFieldSubmitted: (value) {},

@@ -8,8 +8,9 @@ part 'user_model.freezed.dart';
 @freezed
 abstract class UserModel with _$UserModel{
   factory UserModel({
-    @Default('') @JsonKey(name: 'token') String token,
-    @Default('') @JsonKey(name: 'error') String error
+    @Default('') @JsonKey(name: 'access_token') String access_token,
+    @Default('') @JsonKey(name: 'refresh_token') String refresh_token,
+    @Default('') @JsonKey(name: 'message') String message
 
 }) = _UserModel;
 

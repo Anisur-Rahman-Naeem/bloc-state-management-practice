@@ -31,17 +31,24 @@ class NetworkServicesApi implements BaseApiServices{
   Future<dynamic> postApi(String url, data) async{
     dynamic jsonResponse;
     try{
-      final response = await http.post(Uri.parse(url), body: data).timeout(Duration(seconds: 50));
+      final response = await http.post(Uri.parse(url), body: jsonEncode(data), headers: {
+        "content-Type": "application/json"
+      }).timeout(Duration(seconds: 50));
 
       jsonResponse = returnResponse(response);
 
       if(response.statusCode == 200){
 
       }
+      if(response.statusCode == 201){
+
+      }
     }on SocketException {
       throw NoInternetException('');
     }on TimeoutException {
       throw FetchDataException('Time out try again');
+    }on Exception catch(e){
+      print(e);
     }
 
     return jsonResponse;

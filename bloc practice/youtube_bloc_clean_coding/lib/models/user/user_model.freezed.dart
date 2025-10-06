@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
-@JsonKey(name: 'token') String get token;@JsonKey(name: 'error') String get error;
+@JsonKey(name: 'access_token') String get access_token;@JsonKey(name: 'refresh_token') String get refresh_token;@JsonKey(name: 'message') String get message;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.token, token) || other.token == token)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.access_token, access_token) || other.access_token == access_token)&&(identical(other.refresh_token, refresh_token) || other.refresh_token == refresh_token)&&(identical(other.message, message) || other.message == message));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,error);
+int get hashCode => Object.hash(runtimeType,access_token,refresh_token,message);
 
 @override
 String toString() {
-  return 'UserModel(token: $token, error: $error)';
+  return 'UserModel(access_token: $access_token, refresh_token: $refresh_token, message: $message)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'token') String token,@JsonKey(name: 'error') String error
+@JsonKey(name: 'access_token') String access_token,@JsonKey(name: 'refresh_token') String refresh_token,@JsonKey(name: 'message') String message
 });
 
 
@@ -65,10 +65,11 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = null,Object? error = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? access_token = null,Object? refresh_token = null,Object? message = null,}) {
   return _then(_self.copyWith(
-token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+access_token: null == access_token ? _self.access_token : access_token // ignore: cast_nullable_to_non_nullable
+as String,refresh_token: null == refresh_token ? _self.refresh_token : refresh_token // ignore: cast_nullable_to_non_nullable
+as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'token')  String token, @JsonKey(name: 'error')  String error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'access_token')  String access_token, @JsonKey(name: 'refresh_token')  String refresh_token, @JsonKey(name: 'message')  String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.token,_that.error);case _:
+return $default(_that.access_token,_that.refresh_token,_that.message);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.token,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'token')  String token, @JsonKey(name: 'error')  String error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'access_token')  String access_token, @JsonKey(name: 'refresh_token')  String refresh_token, @JsonKey(name: 'message')  String message)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.token,_that.error);case _:
+return $default(_that.access_token,_that.refresh_token,_that.message);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.token,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'token')  String token, @JsonKey(name: 'error')  String error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'access_token')  String access_token, @JsonKey(name: 'refresh_token')  String refresh_token, @JsonKey(name: 'message')  String message)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.token,_that.error);case _:
+return $default(_that.access_token,_that.refresh_token,_that.message);case _:
   return null;
 
 }
@@ -210,11 +211,12 @@ return $default(_that.token,_that.error);case _:
 @JsonSerializable()
 
 class _UserModel implements UserModel {
-   _UserModel({@JsonKey(name: 'token') this.token = '', @JsonKey(name: 'error') this.error = ''});
+   _UserModel({@JsonKey(name: 'access_token') this.access_token = '', @JsonKey(name: 'refresh_token') this.refresh_token = '', @JsonKey(name: 'message') this.message = ''});
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
-@override@JsonKey(name: 'token') final  String token;
-@override@JsonKey(name: 'error') final  String error;
+@override@JsonKey(name: 'access_token') final  String access_token;
+@override@JsonKey(name: 'refresh_token') final  String refresh_token;
+@override@JsonKey(name: 'message') final  String message;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.token, token) || other.token == token)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.access_token, access_token) || other.access_token == access_token)&&(identical(other.refresh_token, refresh_token) || other.refresh_token == refresh_token)&&(identical(other.message, message) || other.message == message));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,error);
+int get hashCode => Object.hash(runtimeType,access_token,refresh_token,message);
 
 @override
 String toString() {
-  return 'UserModel(token: $token, error: $error)';
+  return 'UserModel(access_token: $access_token, refresh_token: $refresh_token, message: $message)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'token') String token,@JsonKey(name: 'error') String error
+@JsonKey(name: 'access_token') String access_token,@JsonKey(name: 'refresh_token') String refresh_token,@JsonKey(name: 'message') String message
 });
 
 
@@ -266,10 +268,11 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? error = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? access_token = null,Object? refresh_token = null,Object? message = null,}) {
   return _then(_UserModel(
-token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+access_token: null == access_token ? _self.access_token : access_token // ignore: cast_nullable_to_non_nullable
+as String,refresh_token: null == refresh_token ? _self.refresh_token : refresh_token // ignore: cast_nullable_to_non_nullable
+as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
