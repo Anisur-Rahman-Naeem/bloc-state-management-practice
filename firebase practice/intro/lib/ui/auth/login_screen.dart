@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_connection/ui/auth/signup_screen.dart';
+import 'package:firebase_connection/ui/posts/post_screen.dart';
+import 'package:firebase_connection/utlis/utlis.dart';
 import 'package:firebase_connection/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +13,39 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  bool loading = false;
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+  }
+
+  void login(){
+    setState(() {
+      loading = true;
+    });
+    _auth.signInWithEmailAndPassword(email: emailController.text.toString(), password: passwordController.text.toString()).then((value){
+        Utils().toastMessage(value.user!.email.toString());
+        Navigator.push(context, MaterialPageRoute(builder: (context) => PostScreen())
+        );
+        setState(() {
+          loading = false;
+        });
+    }).onError((error, stackTrace){
+      debugPrint(error.toString());
+        Utils().toastMessage(error.toString());
+        setState(() {
+          loading = false;
+        });
+    });
   }
 
   @override
@@ -78,8 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 50),
             RoundButton(
               title: 'Login',
+              loading: loading,
               onTap: () {
-                if (_formKey.currentState!.validate()) {}
+                if (_formKey.currentState!.validate()) {
+                  login();
+                }
               },
             ),
             const SizedBox(height: 30),
