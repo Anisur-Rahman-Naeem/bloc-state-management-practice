@@ -105,6 +105,9 @@ class _PostScreenState extends State<PostScreen> {
                           PopupMenuItem(
                               value: 1,
                               child: ListTile(
+                                onTap: (){
+                                  ref.child(snapshot.child('id').value.toString()).remove();
+                                },
                                 leading: Icon(Icons.delete_outline),
                                 title: Text('Delete'),
                               )),
