@@ -17,6 +17,7 @@ class _PostScreenState extends State<PostScreen> {
   final auth = FirebaseAuth.instance;
   final ref = FirebaseDatabase.instance.ref('Test');
   final searchFilter = TextEditingController();
+  final editController = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
@@ -89,6 +90,26 @@ class _PostScreenState extends State<PostScreen> {
                     return ListTile(
                       title: Text(snapshot.child('title').value.toString()),
                       subtitle: Text(snapshot.child('id').value.toString()),
+                      trailing: PopupMenuButton(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                              value: 1,
+                              child: ListTile(
+                                onTap: (){
+                                  Navigator.pop(context);
+                                  showMyDialog(title, snapshot.child('id').value.toString());
+                                },
+                                leading: Icon(Icons.edit),
+                                title: Text('Edit'),
+                              )),
+                          PopupMenuItem(
+                              value: 1,
+                              child: ListTile(
+                                leading: Icon(Icons.delete_outline),
+                                title: Text('Delete'),
+                              )),
+                        ],
+                      child: Icon(Icons.more_vert),),
                     );
                   }else if(title.toLowerCase().contains(searchFilter.text.toLowerCase().toString())){
                     return ListTile(
@@ -103,6 +124,41 @@ class _PostScreenState extends State<PostScreen> {
           )
         ],
       ),
+    );
+  }
+
+  Future<void> showMyDialog(String title, String id)async{
+    editController.text = title;
+    return showDialog(
+      context: context,
+      builder: (context){
+        return AlertDialog(
+          title: Text('Update'),
+          content: Container(
+            child: TextField(
+              controller: editController,
+              decoration: InputDecoration(
+                hintText: 'Edit'
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+            }, child: Text('Cancel')),
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+              ref.child(id).update({
+                'title' : editController.text.toLowerCase(),
+              }).then((value){
+                Utils().toastMessage('Post Update');
+              }).onError((error, stackTrace){
+                Utils().toastMessage(error.toString());
+              });
+            }, child: Text('Update'))
+          ],
+        );
+      },
     );
   }
 }
