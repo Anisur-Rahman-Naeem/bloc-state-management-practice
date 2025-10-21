@@ -2,10 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_connection/ui/auth/login_screen.dart';
 import 'package:firebase_connection/ui/firestore/add_firestore_data.dart';
-import 'package:firebase_connection/ui/posts/add_posts.dart';
 import 'package:firebase_connection/utlis/utlis.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 class FirestoreScreen extends StatefulWidget {
