@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_connection/ui/auth/login_screen.dart';
+import 'package:firebase_connection/ui/home_screen.dart';
 import 'package:firebase_connection/ui/upload_image.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +16,10 @@ class SplashServices {
 
     if(user != null){
       Timer(const Duration(seconds: 3),
-              ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => UploadImageScreen())));
+              ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen())));
     }else{
       Timer(const Duration(seconds: 3),
-              ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen())));
+              ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen())));
     }
   }
 }
